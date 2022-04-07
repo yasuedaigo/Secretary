@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Index</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <h1>Form</h1>
+    <form method="post" th:action="@{/result}" th:object="${form}">
+
+      <for th:each="item : *{getModes()}">
+        <input type="radio" th:value="${item.key}"
+               th:text="${item.value}" th:field="*{femaleFirst}" />
+      </for>
+      <p>totalPrice: <input type="number" th:field="*{totalPrice}" /></p>
+      <p>numberOfMale: <input type="number" th:field="*{numberOfMale}" /></p>
+      <p>numberOfFemale: <input type="number" th:field="*{numberOfFemale}" /></p>
+      <p><input type="submit" value="calculate" /></p>
+    </form>
+  </body>
+</html>

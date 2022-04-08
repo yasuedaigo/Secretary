@@ -16,6 +16,7 @@ public class SecretaryForm {
   private int femaleOfPayment;
   public boolean femaleFirst;
   public Map<Boolean, String> modes;
+  public int change;
 
   public Map<Boolean, String> getModes() {
     modes = new LinkedHashMap<Boolean, String>();
@@ -31,9 +32,11 @@ public class SecretaryForm {
   public void calc() {
     if (femaleFirst) {
       calcOfFemaleFirst();
+      calcChange();
       return;
     }
     calcOfEquality();
+    calcChange();
   }
 
   public void calcOfEquality() {
@@ -79,5 +82,11 @@ public class SecretaryForm {
     if (numberOfFemale == NONE) {
       femaleOfPayment = FREE;
     }
+  }
+
+  private void calcChange(){
+    int totalMalePrice = maleOfPayment * numberOfMale;
+    int totalFemalePrice = femaleOfPayment * numberOfFemale;
+    change = totalPrice - (totalMalePrice + totalFemalePrice);
   }
 }
